@@ -4,8 +4,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+
 import com.andres.springboot.di.app.spinboot_di.models.Product;
 
+
+//transformamos en componente  para inyectar 
+@Component
 public class ProductRespository  implements IProductRepository {
 
 

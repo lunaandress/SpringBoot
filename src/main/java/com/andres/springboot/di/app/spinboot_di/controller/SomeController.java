@@ -3,6 +3,7 @@ package com.andres.springboot.di.app.spinboot_di.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,9 @@ import com.andres.springboot.di.app.spinboot_di.service.ProductService;
 public class SomeController {
 
     //lo instancio para poder traer los datos del  service
-    private ProductService service = new ProductService();
+    @Autowired
+    private ProductService service ;
+    //private ProductService service = new ProductService();
 
     //RUTA
     @GetMapping

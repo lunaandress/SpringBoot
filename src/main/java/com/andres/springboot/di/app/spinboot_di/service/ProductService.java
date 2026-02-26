@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.andres.springboot.di.app.spinboot_di.models.Product;
 import com.andres.springboot.di.app.spinboot_di.repositories.ProductRespository;
 
@@ -11,10 +14,15 @@ import com.andres.springboot.di.app.spinboot_di.repositories.ProductRespository;
     //los puede manipular y trabajar con ellos.
 
 
+//Registramos esta clase como un componente  para hacerlo un COMPONENTE  a esta clase
+@Component
 public class ProductService implements IProductService {
 
+//Inyectamos el repositorio y asi ya no depende de un new y todo lo maneja desde el ocntrolador 
+@Autowired
+private ProductRespository respository;
 
-private ProductRespository respository= new ProductRespository();
+//private ProductRespository respository= new ProductRespository();
 
 //METODOS
 
