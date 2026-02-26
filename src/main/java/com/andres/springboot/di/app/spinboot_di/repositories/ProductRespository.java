@@ -5,12 +5,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.andres.springboot.di.app.spinboot_di.models.Product;
 
 
-//transformamos en componente  para inyectar 
-@Component
+//transformamos en componente  para inyectar
+//@Component @Repository es igual a @Componentes pero especialmente para DAO
+@Repository
 public class ProductRespository  implements IProductRepository {
 
 

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.andres.springboot.di.app.spinboot_di.models.Product;
 import com.andres.springboot.di.app.spinboot_di.repositories.ProductRespository;
@@ -15,7 +16,8 @@ import com.andres.springboot.di.app.spinboot_di.repositories.ProductRespository;
 
 
 //Registramos esta clase como un componente  para hacerlo un COMPONENTE  a esta clase
-@Component
+//@Component @Service es igual a @Componente pero aplicado para  servicio de logica de negocio 
+@Service
 public class ProductService implements IProductService {
 
 //Inyectamos el repositorio y asi ya no depende de un new y todo lo maneja desde el ocntrolador 
