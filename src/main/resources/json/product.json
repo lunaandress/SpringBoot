@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "PLAY STATION 5 ",
+        "price": 100
+    },
+    {
+        "id": 2,
+        "name": "ABRIGO NAVI LARGO ",
+        "price": 400
+    },
+    {
+        "id": 3,
+        "name": "HORNO  ROJO",
+        "price": 300
+    },
+    {
+        "id": 4,
+        "name": "CHAQUETA PLUMA NEGRA",
+        "price": 612
+    }
+]
