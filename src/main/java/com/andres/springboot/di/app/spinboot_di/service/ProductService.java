@@ -25,7 +25,7 @@ public class ProductService implements IProductService {
 
         return repository.findAll().stream().map(p -> {
                     Double priceTax = p.getPrice() * 1.25d;
-                    //Product newProduct = (Product) p.clone();
+                   // Product newProduct = (Product) p.clone();
                     //newProduct.setPrice(priceTax.longValue());
                     //return newProduct;
                     p.setPrice(priceTax.longValue());
