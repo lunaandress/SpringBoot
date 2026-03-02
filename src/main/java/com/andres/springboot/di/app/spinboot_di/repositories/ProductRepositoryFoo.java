@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import com.andres.springboot.di.app.spinboot_di.models.Product;
 
-//@Primary le dice que voy a usar  este respositorio por defecto 
+//@Primary le dice que voy a usar  este respositorio por defecto
 @Primary
-@Repository
+@Repository("productFoo")
 public class ProductRepositoryFoo implements IProductRepository {
 
     @Override

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.andres.springboot.di.app.spinboot_di.models.Product;
@@ -26,7 +26,8 @@ private ProductRespository respository;
 //private ProductRespository respository= new ProductRespository();
 
 // EL AUTOWIRED POR CONSTRUCTOR no es necesario poener la etiqueta del autowired
-public ProductService(ProductRespository respository) {
+//@Qualifier hace que  Le dices a Spring:Quiero exactamente este bean
+public ProductService( @Qualifier("productList")ProductRespository respository) {
     this.respository = respository;
 }
 

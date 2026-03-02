@@ -11,7 +11,7 @@ import com.andres.springboot.di.app.spinboot_di.models.Product;
 
 //transformamos en componente  para inyectar
 //@Component @Repository es igual a @Componentes pero especialmente para DAO
-@Repository
+@Repository("productList")//nombre que le damos
 public class ProductRespository  implements IProductRepository {
     
     //Se encarga del acceso a datos
