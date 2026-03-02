@@ -4,21 +4,25 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.context.annotation.RequestScope;
 
 import com.andres.springboot.di.app.spinboot_di.models.Product;
 
 
 //transformamos en componente  para inyectar
 //@Component @Repository es igual a @Componentes pero especialmente para DAO
+@Primary
+@RequestScope // por usuario : Una instancia por petición HTTP
 @Repository("productList")//nombre que le damos
-public class ProductRespository  implements IProductRepository {
+public class ProductRespositoryImpl  implements IProductRepository {
     
     //Se encarga del acceso a datos
 
     private  List<Product> data;
-
-    public ProductRespository() {
+    // singleton pero  con el  RequestScope lo hace por usuario y ya no ce alamacena por memoria
+    public ProductRespositoryImpl() {
         this.data = Arrays.asList(
             new Product(1L,"memoria corsair 32 ", 300L),
             new Product(2L , "Intercor core 9 ",850L),

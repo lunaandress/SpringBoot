@@ -4,13 +4,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import com.andres.springboot.di.app.spinboot_di.models.Product;
 
 //@Primary le dice que voy a usar  este respositorio por defecto
-@Primary
 @Repository("productFoo")
 public class ProductRepositoryFoo implements IProductRepository {
 

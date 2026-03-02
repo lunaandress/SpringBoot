@@ -8,62 +8,35 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.andres.springboot.di.app.spinboot_di.models.Product;
-import com.andres.springboot.di.app.spinboot_di.repositories.ProductRespository;
+import com.andres.springboot.di.app.spinboot_di.repositories.IProductRepository;
 
-//El service accede a los datos mediante al repositorio pero ademas
-    //los puede manipular y trabajar con ellos.
-
-
-//Registramos esta clase como un componente  para hacerlo un COMPONENTE  a esta clase
-//@Component @Service es igual a @Componente pero aplicado para  servicio de logica de negocio 
 @Service
 public class ProductService implements IProductService {
 
-//Inyectamos el repositorio y asi ya no depende de un new y todo lo maneja desde el ocntrolador 
-//@Autowired
-private ProductRespository respository;
+    private final IProductRepository repository;
 
-//private ProductRespository respository= new ProductRespository();
+    // Inyección por constructor (no necesita @Autowired)
+    public ProductService(@Qualifier("productList") IProductRepository repository) {
+        this.repository = repository;
+    }
 
-// EL AUTOWIRED POR CONSTRUCTOR no es necesario poener la etiqueta del autowired
-//@Qualifier hace que  Le dices a Spring:Quiero exactamente este bean
-public ProductService( @Qualifier("productList")ProductRespository respository) {
-    this.respository = respository;
-}
+    @Override
+    public List<Product> findAll() {
 
+        return repository.findAll().stream().map(p -> {
+                    Double priceTax = p.getPrice() * 1.25d;
+                    //Product newProduct = (Product) p.clone();
+                    //newProduct.setPrice(priceTax.longValue());
+                    //return newProduct;
+                    p.setPrice(priceTax.longValue());
+                    return p;
+            
+                })
+                .collect(Collectors.toList());
+    }
 
-//METODOS
-
-@Override
-public List<Product>findAll(){
-    
-    //principio de imutabilidad
-    return respository.findAll().stream().map(p -> {
-        Double priceTax= p.getPrice() * 1.25d;
-       // Product newProduct = new Product(p.getId(),p.getName(),priceImp.longValue());
-        Product newProduct =  (Product)p.clone();
-        newProduct.setPrice(priceTax.longValue());
-        return newProduct;
-    }).collect(Collectors.toList());
-}
-
-
-
-@Override
-public Optional<Product> findById(long id){
-    return respository.findById(id);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public Optional<Product> findById(long id) {
+        return repository.findById(id);
+    }
 }
