@@ -5,7 +5,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,7 @@ public class ProductService implements IProductService {
     private final IProductRepository repository;
 
     // Inyección por constructor (no necesita @Autowired)
-    public ProductService(@Qualifier("productList") IProductRepository repository) {
+    public ProductService(IProductRepository repository) {
         this.repository = repository;
     }
 

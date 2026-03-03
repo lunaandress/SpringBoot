@@ -13,6 +13,9 @@ import com.andres.springboot.di.app.spinboot_di.models.Product;
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.ObjectMapper;
 
+
+//esta clase la vamos a implemtentar para que esta sea una clase spring
+
 public class ProductRespositoryJson implements IProductRepository {
 
 
@@ -40,11 +43,12 @@ public class ProductRespositoryJson implements IProductRepository {
     }
 
 
-    @Override
-    public Optional<Product> findById(long id) {
-
-        return null ;
-    }
+@Override
+public Optional<Product> findById(long id) {
+    return list.stream()
+                .filter(p -> p.getId() ==id)
+                .findFirst();
+}
 
 
 
