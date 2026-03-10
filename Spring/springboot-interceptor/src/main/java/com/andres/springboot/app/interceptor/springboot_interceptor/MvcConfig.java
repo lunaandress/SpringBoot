@@ -18,8 +18,8 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        //registry.addInterceptor(timInterceptor).addPathPatterns("/app/bar");// esto hace que solo se ejecute en bar el interceptor en terminal ya sea en post o pre
-        registry.addInterceptor(timInterceptor).excludePathPatterns("/app/bar","/app/foo"); // con esto exclue en lo que no quiero que se ejecute
+        registry.addInterceptor(timInterceptor).addPathPatterns("/app/bar","/app/foo");// esto hace que solo se ejecute en bar el interceptor en terminal ya sea en post o pre
+        //registry.addInterceptor(timInterceptor).excludePathPatterns("/app/bar","/app/foo"); // con esto exclue en lo que no quiero que se ejecute
     }
     
 

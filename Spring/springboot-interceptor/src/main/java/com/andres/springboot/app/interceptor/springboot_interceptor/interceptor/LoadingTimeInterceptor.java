@@ -32,13 +32,21 @@ public class LoadingTimeInterceptor implements HandlerInterceptor{    //PARA CRE
                 Random random = new Random();
                     int delay= random.nextInt(500);
                     Thread.sleep(delay);
-        return true;
+
+                    //vamos a personalizar INTERCERPTOR CUNAND ES FALSE
+/*                     Map<String,String>json = new HashMap<>();
+                    json.put("error", "no tienes acceso a esta paguina!");
+                    json.put("date", new Date().toString());
+
+                    ObjectMapper mapper = new ObjectMapper();
+                    String jsonString= mapper.writeValueAsString(json);
+                    response.setContentType("application/json");
+                    response.setStatus(401);
+                    response.getWriter().write(jsonString);; */
+                    return true;
     }
 
-
-
-        //POST
-
+    //POST
     //Sirve para registrar mensajes en el log de la aplicación.
     private static final Logger logger = LoggerFactory.getLogger(LoadingTimeInterceptor.class);
     @Override
