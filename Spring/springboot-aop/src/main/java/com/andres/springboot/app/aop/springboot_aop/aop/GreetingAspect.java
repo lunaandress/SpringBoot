@@ -10,7 +10,6 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
@@ -28,8 +27,8 @@ public class GreetingAspect {
 
     //@Pointcut define la “regla” o “grupo de métodos” que quieres interceptar, y luego
     //puedes reutilizar esa misma regla en cualquier anotación de AOP
-    @Pointcut("execution(String com.andres.springboot.app.aop.springboot_aop.services.GreetingService.*(..))")
-    private void  greetingLoggerPointCut (){}
+    //@Pointcut("execution(String com.andres.springboot.app.aop.springboot_aop.services.GreetingService.*(..))")
+    //private void  greetingLoggerPointCut (){}
 
 
     //JoinPoint es un punto de union con un aspecto Aspecto
