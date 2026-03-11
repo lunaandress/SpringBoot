@@ -3,9 +3,11 @@ package com.andres.springboot.app.aop.springboot_aop.aop;
 import java.util.Arrays;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
@@ -56,4 +58,21 @@ public class GreetingAspect {
         String args=Arrays.toString(joinPoint.getArgs());
         logger.info(" Despues de lanzar la excepcion " + method + " " + args);
     }
+
+    //Anotación de Spring AOP que envuelve la ejecución de un método, permitiendo ejecutar código antes y después,
+    //e incluso controlar si el método se ejecuta o no.
+    @Around("execution(String com.andres.springboot.app.aop.springboot_aop.services.GreetingService.*(..))")
+    public Object loggerAround(ProceedingJoinPoint joinPoint) throws Throwable{
+        String method= joinPoint.getSignature().getName();
+        String args=Arrays.toString(joinPoint.getArgs());
+
+        Object result = joinPoint.proceed();
+        logger.info("El metodo " + method + "() con lso parametros " + args);
+        logger.info("El metodo  " + method + "() retorna el resultado : " + result);
+        
+        return result;
+
+    }
 }
+
+
