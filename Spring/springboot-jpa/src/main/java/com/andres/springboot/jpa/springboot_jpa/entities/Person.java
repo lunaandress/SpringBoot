@@ -7,70 +7,70 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity // le digo que  va ser una entidad 
-@Table(name="persons")// pongo nombre de mi entidad (tabla) para hacer la consulta
+@Entity
+@Table(name = "persons")
 public class Person {
-    
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//esto dice crea le id  automaticamente en aunto incremental
-    private long id ;
-    private  String name;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
     private String lastname;
 
-    @Column(name="programing_lenguaje")
-    private String programinglenguaje;
+    @Column(name = "programming_language")
+    private String programmingLanguage;
 
-    //CONSTRUCTOR
-    // En Jpa siempre hay que construir un constructor vacio  ya que es el que va a pillar
-
+    // Constructor vacío (obligatorio para JPA)
     public Person() {
-
     }
 
-     //CONSTRUCTOR
-
-    public Person(long id, String name, String lastname, String programinglenguaje) {
-        this.id = id;
+    // Constructor sin id (lo genera la base de datos)
+    public Person(String name, String lastname, String programmingLanguage) {
         this.name = name;
         this.lastname = lastname;
-        this.programinglenguaje = programinglenguaje;
+        this.programmingLanguage = programmingLanguage;
     }
 
+    // GETTERS Y SETTERS
 
-    //GET AND SET
-    public long getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(long id) {
+
+    public void setId(Long id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getLastname() {
         return lastname;
     }
+
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
-    public String getPrograminglenguaje() {
-        return programinglenguaje;
-    }
-    public void setPrograminglenguaje(String programinglenguaje) {
-        this.programinglenguaje = programinglenguaje;
+
+    public String getProgrammingLanguage() {
+        return programmingLanguage;
     }
 
-    //muestra los datos del objeto persona 
+    public void setProgrammingLanguage(String programmingLanguage) {
+        this.programmingLanguage = programmingLanguage;
+    }
+
     @Override
     public String toString() {
-        return "Person [id=" + id + ", name=" + name + ", lastname=" + lastname + ", programinglenguaje="
-                + programinglenguaje + "]";
+        return "Person [id=" + id +
+                ", name=" + name +
+                ", lastname=" + lastname +
+                ", programmingLanguage=" + programmingLanguage + "]";
     }
-
-    
-    
-
 }
