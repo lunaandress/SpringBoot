@@ -23,14 +23,19 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 	//es como una aplicacion de consola de sprinboot
 	@Override
 	public void run(String... args) throws Exception {
-		
-
+	
 		//METODOS TRAIDOS DE LA INTERFACE
-
 		//List<Person>persons=(List<Person>) repository.findAll();
-
 		List<Person> persons= repository.buscarByProgrammingLanguage("Java","Andres");
 		persons.stream().forEach(person -> System.out.println(person));
+
+		////////////////////////////////////////////////////////////////
+		
+		//mostramos los  datos de personas por valores
+		List<Object[]> personsValues= repository.obtenerPersonaData();
+		personsValues.stream().forEach( person ->{
+				System.out.println( person[0]+" es experto en " + person[1]);
+		});
 
 	}
 
