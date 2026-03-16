@@ -29,15 +29,35 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
+		//list();
+
 		//findOne();
 		//create();
 		//update();
-		System.out.println("DATOS DE USUARIOS");
-		list();
-		delete();
-		list();
+		//delete();
+		//personalizedQueries();
+		personalizeQueries2();
+
 		
 
+	}
+	@Transactional
+	public void personalizeQueries2(){
+		System.out.println("=======consulta por pobjeto person  y lenguje de programacion =========");
+		List<Object[]> perObjects= repository.findAllMixPerson();
+		perObjects.forEach(reg ->{
+			System.out.println("programmingLanguage=" + reg[1] + "person= " + reg[0]);
+		});
+	}
+
+
+	@Transactional
+	public void personalizedQueries(){
+		System.out.println("=========Consulta Personalizada============");
+		System.out.println("Ingrese el id para el nombre a mostrar");
+		long id = sc.nextLong();
+		String name = repository.getNameById(id);
+		System.out.println(name);
 	}
 
 	@Transactional
@@ -45,12 +65,7 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 		System.out.println("Ingrese el Id a eliminar:");
 		Long id = sc.nextLong();
 		repository.deleteById(id);
-
-
-
 	}
-
-
 
 	@Transactional//  eso se usa cuando se modifica una tabla en la DB
 	public void update(){
@@ -66,8 +81,6 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 		});
 	}
 
-
-
 	public void create(){
 		Scanner sc = new Scanner(System.in);
 		String name =  sc.next();
@@ -81,7 +94,6 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 
 		repository.findById(personNew.getId()).ifPresent(p->System.out.println(person));
 	}
-
 
 	public void  findOne(){
 		//Person  person = null;

@@ -12,19 +12,23 @@ import com.andres.springboot.jpa.springboot_jpa.entities.Person;
 //<Person, Long>  es la : <Entity, idEntity>
 public interface PersonRepository  extends CrudRepository<Person,Long> {
 
+
+    //METODOS
+    @Query("select  p  ,  p.programmingLanguage from Person p")
+    List<Object[]>findAllMixPerson();
+
+
+    @Query("select p.name from Person p where p.id=?1")
+    String getNameById(long id);
+
     @Query("select p from Person p where p.id=?1")
     Optional<Person> findOne(long id);
-
     @Query("select p from Person p where p.name=?1")
     Optional<Person> findOneName(String name);
-
-
     //Si quiero crear un metodo  nuevo que no este en Crud  tengo que hacer esto :
     @Query("select p from  Person  p where p.programmingLanguage=?1 and p.name=?2")// se usa el nombre de la clase importante
     List<Person> buscarByProgrammingLanguage(String programmingLanguage, String name);
-    
     List<Person> findByProgrammingLanguage(String programmingLanguage);
-
     @Query("select p.name , p.programmingLanguage from Person p")
     List<Object[]>obtenerPersonaData();
 }
