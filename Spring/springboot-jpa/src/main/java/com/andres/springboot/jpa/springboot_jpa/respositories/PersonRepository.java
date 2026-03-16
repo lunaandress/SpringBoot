@@ -1,6 +1,7 @@
 package com.andres.springboot.jpa.springboot_jpa.respositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -10,6 +11,12 @@ import com.andres.springboot.jpa.springboot_jpa.entities.Person;
 // rudRepository<Person,Long> Te da automáticamente operaciones CRUD:
 //<Person, Long>  es la : <Entity, idEntity>
 public interface PersonRepository  extends CrudRepository<Person,Long> {
+
+    @Query("select p from Person p where p.id=?1")
+    Optional<Person> findOne(long id);
+
+    @Query("select p from Person p where p.name=?1")
+    Optional<Person> findOneName(String name);
 
 
     //Si quiero crear un metodo  nuevo que no este en Crud  tengo que hacer esto :
@@ -21,5 +28,7 @@ public interface PersonRepository  extends CrudRepository<Person,Long> {
     @Query("select p.name , p.programmingLanguage from Person p")
     List<Object[]>obtenerPersonaData();
 }
+
+
 
 
