@@ -20,11 +20,31 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 	@Autowired
 	private  PersonRepository repository;
 
-	//es como una aplicacion de consola de sprinboot
 	@Override
 	public void run(String... args) throws Exception {
-	
-		//METODOS TRAIDOS DE LA INTERFACE
+
+		findOne();
+
+	}
+
+
+	public void  findOne(){
+		//Person  person = null;
+		//Optional <Person> optionalPerson=repository.findById(10l);
+		//if (optionalPerson.isPresent()) {
+		//	person=optionalPerson.get();
+		//}else{
+		//	System.out.println("no esta presente ");
+		//}
+		// System.err.println(person);
+		repository.findById(1L).ifPresent(System.out::println);
+
+	}
+
+
+	// meto los metodos en otro metodo  void
+public  void list(){
+	//METODOS TRAIDOS DE LA INTERFACE
 		//List<Person>persons=(List<Person>) repository.findAll();
 		List<Person> persons= repository.buscarByProgrammingLanguage("Java","Andres");
 		persons.stream().forEach(person -> System.out.println(person));
@@ -37,6 +57,6 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 				System.out.println( person[0]+" es experto en " + person[1]);
 		});
 
-	}
+}
 
 }
