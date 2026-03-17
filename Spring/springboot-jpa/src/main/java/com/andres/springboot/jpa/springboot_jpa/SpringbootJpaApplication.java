@@ -37,11 +37,29 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 		//update();
 		//delete();
 		//personalizedQueries();
-		personalizeQueries2();
+		//personalizeQueries2();
+		personalizeQueryDistinct();
 
+	
 		
 
+
+
+
 	}
+
+
+	@Transactional
+	public void personalizeQueryDistinct(){
+			System.out.println("Imprimir consultas con nombres de personas ");
+			List<String> names= repository.findAllNames();
+			names.forEach(System.out::println);
+		}
+
+
+
+
+
 	@Transactional
 	public void personalizeQueries2(){
 		System.out.println("=======consulta por pobjeto person  y lenguje de programacion =========");
@@ -88,6 +106,7 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 
 	public void create(){
 		Scanner sc = new Scanner(System.in);
+		System.out.println("INGRESE LOS DATA DEL NUEVO USUARIO ");
 		String name =  sc.next();
 		String lastname= sc.next();
 		String programmingLanguage= sc.next();

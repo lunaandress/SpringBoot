@@ -16,13 +16,13 @@ public interface PersonRepository  extends CrudRepository<Person,Long> {
 
     //METODOS
 
+
+    @Query("select distinct p.name from Person p")
+    List<String> findAllNames();
+
     // este metodo me  crea  un nuevo objeto  y me muestra al informacion  pero con los variables de DTO
     @Query("select new  com.andres.springboot.jpa.springboot_jpa.dto.PersonDto (p.name , p.lastname ) from  Person p ")
     List<PersonDto>findAllPersonDto();
-
-
-
-
     @Query("select  p  ,  p.programmingLanguage from Person p")
     List<Object[]>findAllMixPerson(); 
     @Query("select p.name from Person p where p.id=?1")
