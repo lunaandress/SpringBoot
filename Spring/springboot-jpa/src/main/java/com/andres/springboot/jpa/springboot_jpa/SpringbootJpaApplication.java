@@ -39,7 +39,9 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 		//personalizedQueries();
 		//personalizeQueries2();
 		//personalizeQueryDistinct();
-		personalQueriesConcatUppLow();
+		//personalQueriesConcatUppLow();
+		personalizeBetween();
+		
 
 	
 		
@@ -48,6 +50,17 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 
 
 	}
+
+	@Transactional
+	public void personalizeBetween(){
+		System.out.println("==========consulta por rangos========");
+		List<Person>personsBet=repository.findAllBetweenId();
+		personsBet.forEach(System.out::println);
+
+	
+
+	}
+
 
 @Transactional
 	public void personalQueriesConcatUppLow(){

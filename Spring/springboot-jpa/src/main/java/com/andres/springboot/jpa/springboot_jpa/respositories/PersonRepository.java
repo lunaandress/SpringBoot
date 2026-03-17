@@ -16,11 +16,15 @@ public interface PersonRepository  extends CrudRepository<Person,Long> {
 
     //METODOS
 
+    @Query("select  p from Person p where p.id between 2 and 5 ")
+    List<Person>findAllBetweenId();
+
+
+
 
     // tambien se puede concatenrt asi || ' '  ||
     @Query("select  upper (CONCAT(p.name , ' ' , p.lastname)) from Person p")
     List<String> findAllFullNameConcat();
-
     @Query("select distinct p.name from Person p")
     List<String> findAllNames();
     // este metodo me  crea  un nuevo objeto  y me muestra al informacion  pero con los variables de DTO
