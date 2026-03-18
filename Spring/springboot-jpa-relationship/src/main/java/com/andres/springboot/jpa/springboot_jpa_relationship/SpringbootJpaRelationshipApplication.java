@@ -1,5 +1,7 @@
 package com.andres.springboot.jpa.springboot_jpa_relationship;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -45,6 +47,23 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 
 		Invoice invoiceDB = invoiceRepository.save(invoice);
 		System.out.println(invoiceDB);
+	}
+
+	public void manyOneindIdC(){
+
+		Optional<Client> clientOpt= clientRepository.findById(1L);
+		if (clientOpt.isPresent()) {
+			Client  client= clientOpt.orElseThrow();
+				Invoice invoice= new Invoice("compras de oficina ", 2000L);
+				invoice.setClient(client);
+				Invoice invoiceDB = invoiceRepository.save(invoice);
+				System.out.println(invoiceDB);
+			
+		}
+	
+
+	
+
 	}
 
 
