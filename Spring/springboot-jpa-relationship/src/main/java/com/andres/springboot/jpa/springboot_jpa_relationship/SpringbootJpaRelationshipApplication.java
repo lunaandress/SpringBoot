@@ -35,7 +35,30 @@ public class SpringbootJpaRelationshipApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		//manyToOne();
-		oneToManyFindById();
+		//oneToManyFindById();
+		deleteAdress();
+	}
+
+
+
+	@Transactional
+	public void deleteAdress(){
+		Client client =  new Client("Frank","Moras");
+		Address address1 = new Address("El vergel",1234);
+		Address address2 = new Address("Vasco de Gama",2342);
+
+		client.getAddressList().add(address1);
+		client.getAddressList().add(address2);
+
+		clientRepository.save(client);
+		System.out.println(client);
+
+		Optional<Client>optionalCl= clientRepository.findById(3L);
+		optionalCl.ifPresent(c ->{
+		c.getAddressList().remove(address1);
+		clientRepository.save(c);
+		System.out.println(c);
+		});
 	}
 
 
