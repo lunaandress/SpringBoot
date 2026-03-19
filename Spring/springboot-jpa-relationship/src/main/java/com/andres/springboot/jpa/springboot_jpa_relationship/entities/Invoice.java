@@ -35,11 +35,6 @@ public class Invoice {
         
     }
 
-
-    
-
-
-
     public Client getClient() {
         return client;
     }
