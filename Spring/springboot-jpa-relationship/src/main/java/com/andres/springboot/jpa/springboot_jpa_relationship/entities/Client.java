@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -22,7 +23,8 @@ public class Client {
     private String name;
     private String lastname;
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)// se insewrta o borra en cascada osea en conjunto 
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)// se insewrta o borra en cascada osea en conjunto
+    @JoinColumn(name="client_id")
     private List<Address> addressList; //lista de direcciones
 
     public Client(String name, String lastname) {
