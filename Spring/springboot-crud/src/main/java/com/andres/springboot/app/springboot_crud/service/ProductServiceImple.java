@@ -1,4 +1,4 @@
-package service;
+package com.andres.springboot.app.springboot_crud.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import entities.Product;
-import repositories.ProductRepository;
+import com.andres.springboot.app.springboot_crud.entities.Product;
+import com.andres.springboot.app.springboot_crud.repositories.ProductRepository;
 
 @Service
 public class ProductServiceImple implements ProductService  {
@@ -30,7 +30,7 @@ public class ProductServiceImple implements ProductService  {
 
     @Transactional(readOnly = true)
     @Override
-    public Optional<Product> findById(long id) {
+    public Optional<Product> findById(Long id) {
             return repository.findById(id);
     }
 

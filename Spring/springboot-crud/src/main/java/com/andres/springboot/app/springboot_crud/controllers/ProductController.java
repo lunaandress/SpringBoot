@@ -1,4 +1,4 @@
-package cotrollers;
+package com.andres.springboot.app.springboot_crud.controllers;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import entities.Product;
-import repositories.ProductRepository;
-import service.ProductService;
+import com.andres.springboot.app.springboot_crud.entities.Product;
+import com.andres.springboot.app.springboot_crud.repositories.ProductRepository;
+import com.andres.springboot.app.springboot_crud.service.ProductService;
 
 
 
 
 @RestController
-@RequestMapping("/api/prodcuts")
+@RequestMapping("/api/products")
 public class ProductController {
 
 
@@ -54,19 +54,26 @@ public ResponseEntity<?> view(  @PathVariable Long id) {
 }
 
 
-//CREAR NUEVO 
-
-@PostMapping()
-public ResponseEntity <Product> create(@RequestBody Product product) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(product);
+//CREAR NUEVO
+@PostMapping
+public ResponseEntity<Product> create(@RequestBody Product product) {
+    Product saved = productService.save(product);
+    return ResponseEntity.status(HttpStatus.CREATED).body(saved);
 }
 
 
 //ACTUALIZAR
-
 @PutMapping("/{id}")
-public ResponseEntity<Product>update(@PathVariable long id, @RequestBody Product product) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(productService.save(product));
+public ResponseEntity<Product> update(@PathVariable Long id, @RequestBody Product product) {
+    Optional<Product> prodOpt = productService.findById(id);
+
+    if (prodOpt.isPresent()) {
+        product.setId(id); // importante
+        Product updated = productService.save(product);
+        return ResponseEntity.ok(updated);
+    }
+
+    return ResponseEntity.notFound().build();
 }
 
 
