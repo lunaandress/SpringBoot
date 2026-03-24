@@ -43,7 +43,6 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(user));
     }
 
-
 private ResponseEntity<Map<String, String>> validation(BindingResult result) {
     Map<String, String> errors = new HashMap<>();
 
