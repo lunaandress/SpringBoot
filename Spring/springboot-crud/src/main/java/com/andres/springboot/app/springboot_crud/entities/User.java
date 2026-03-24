@@ -2,6 +2,8 @@ package com.andres.springboot.app.springboot_crud.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.UniqueConstraint;
@@ -30,6 +33,7 @@ private Long id;
 private String username;
 
 @NotBlank
+@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)// con esto aho que desaparesca el password
 private String password;
 
 @ManyToMany
@@ -41,7 +45,13 @@ uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id","roles_id"})}
 )
 private List<Role> roles;
 
-private boolean enabled; // ayuda a desactivar disponibe en la base de datos 
+
+private boolean enable; // ayuda a desactivar disponibe en la base de datos
+
+@PrePersist// metodo que se hace  activa antes del la llamada al original
+public void prePersist(){
+    enable=true;
+}
 
 @Transient // con esto le decimos que no es de la tabla para  que no salte error
 private boolean admin;//campo no de la tabla
@@ -80,12 +90,13 @@ public boolean isAdmin() {
 public void setAdmin(boolean admin) {
     this.admin = admin;
 }
-public boolean isEnabled() {
-    return enabled;
+public boolean isEnable() {
+    return enable;
 }
-public void setEnabled(boolean enabled) {
-    this.enabled = enabled;
+public void setEnable(boolean enable) {
+    this.enable = enable;
 }
+
 
 
 
