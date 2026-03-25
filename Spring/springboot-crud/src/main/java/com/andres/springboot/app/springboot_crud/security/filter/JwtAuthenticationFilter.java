@@ -30,7 +30,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 private AuthenticationManager authenticationManager;
 
-
+ //METODOS PARA CREAR TOKENS 
 public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
 
     this.authenticationManager = authenticationManager;
