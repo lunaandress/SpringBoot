@@ -1,12 +1,12 @@
 package com.andres.springboot.app.springboot_crud.security.filter;
 
+import static com.andres.springboot.app.springboot_crud.security.TokenJwtConfig.*;
+
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.crypto.SecretKey;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,7 +25,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.ObjectMapper;
-import static com.andres.springboot.app.springboot_crud.security.TokenJwtConfig.*;
 
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -83,9 +82,23 @@ protected void successfulAuthentication(HttpServletRequest request, HttpServletR
         bodyJson.put("message", String.format("Hola %s has iniciado session con exito", username));
 
         response.getWriter().write(new ObjectMapper().writeValueAsString(bodyJson));
-        response.setContentType("application/json");
+        response.setContentType(CONTENT_TYPE);
         response.setStatus(200);
 }
+
+@Override
+protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
+        AuthenticationException failed) throws IOException, ServletException {
+    Map <String, String > body = new HashMap<>();
+    body.put("mesagge", "Error en la autenticacion  username o  password incorrecto ");
+    body.put("error", failed.getMessage());
+
+    response.getWriter().write(new ObjectMapper().writeValueAsString(body));
+    response.setStatus(401);
+    response.setContentType(CONTENT_TYPE);
+}
+
+
 
 
 
